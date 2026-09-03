@@ -1,35 +1,15 @@
 class Solution {
 public:
-bool valid(vector<int>& nums, int mid) {
-    int n = nums.size();
 
-    for(int i = 0; i < n; i++) {
-        mid = mid + nums[i];
-
-        if(mid < 1) {
-            return false;
-        }
-    }
-
-    return true;
-}
 int minStartValue(vector<int>& nums) {
-    int l = 1, r = 10001;
-    int result = 1;
+   int n=nums.size();
+   int sum=0;
+   int minv=0;
+   for(int i=0; i<n; i++){
+    sum+=nums[i];
+    minv=min(minv, sum);
 
-    while(l <= r) {
-        int mid = l + (r - l) / 2;
-
-        if(valid(nums, mid) == true) {
-            result = mid;
-            r = mid - 1;
-        }
-        else {
-            l = mid + 1;
-        }
-    }
-
-    return result;
+   }
+   return -minv+1;
 }
-
 };
